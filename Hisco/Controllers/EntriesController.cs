@@ -22,10 +22,10 @@
             _security = security;
         }
 
-        // GET /api/entries
-        public IEnumerable<Entry> Get()
+        // GET /api/entries/{level}
+        public IEnumerable<Entry> Get(ushort level)
         {
-            return _repository.Get();
+            return _repository.Get(level);
         }
 
         // POST /api/entries

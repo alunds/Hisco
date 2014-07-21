@@ -4,7 +4,7 @@
 
     public interface IRepository<T>
     {
-        IEnumerable<T> Get();
+        IEnumerable<T> Get(ushort level);
         void Add(T item);
     }
 }

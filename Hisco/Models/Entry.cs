@@ -11,6 +11,9 @@
         [XmlIgnore]
         public long Id { get; set; }
         [Required]
+        [Range(1, 65535)]
+        public ushort Level { get; set; }
+        [Required]
         [StringLength(50)]
         public string Name { get; set; }
         [Required]
