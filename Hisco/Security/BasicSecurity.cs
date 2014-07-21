@@ -1,9 +1,9 @@
 ﻿namespace Hisco.Security
 {
     using System.Configuration;
+    using System.Linq;
     using System.Security.Cryptography;
     using System.Text;
-    using WebGrease.Css.Extensions;
 
     public class BasicSecurity : ISecurity
     {
@@ -12,7 +12,7 @@
         public string GenerateHash(string[] keys)
         {
             var keyBuilder = new StringBuilder();
-            keys.ForEach(x => keyBuilder.Append(x));
+            keys.ToList().ForEach(x => keyBuilder.Append(x));
             keyBuilder.Append(_hashKey);
 
             var md5 = MD5.Create();

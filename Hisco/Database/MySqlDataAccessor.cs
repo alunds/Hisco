@@ -4,8 +4,8 @@
     using System.Collections.Generic;
     using System.Configuration;
     using System.Data;
+    using System.Linq;
     using MySql.Data.MySqlClient;
-    using WebGrease.Css.Extensions;
 
     public class MySqlDataAccessor<T> : IDataAccessor<T>
     {
@@ -23,7 +23,7 @@
                     conn.Open();
 
                     if (parameters != null)
-                        parameters.ForEach(x => cmd.Parameters.AddWithValue(x.Item1, x.Item2));
+                        parameters.ToList().ForEach(x => cmd.Parameters.AddWithValue(x.Item1, x.Item2));
                     
                     using (var dr = cmd.ExecuteReader())
                     {
@@ -49,7 +49,7 @@
                     conn.Open();
 
                     if (parameters != null)
-                        parameters.ForEach(x => cmd.Parameters.AddWithValue(x.Item1, x.Item2));
+                        parameters.ToList().ForEach(x => cmd.Parameters.AddWithValue(x.Item1, x.Item2));
 
                     cmd.ExecuteNonQuery();
 
