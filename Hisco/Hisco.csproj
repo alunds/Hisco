@@ -124,6 +124,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="HiscoConstants.cs" />
     <Compile Include="Controllers\EntriesController.cs" />
     <Compile Include="Database\IDataAccessor.cs" />
     <Compile Include="Database\MySqlDataAccessor.cs" />

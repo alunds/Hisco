@@ -15,8 +15,6 @@
     {
         private readonly IRepository<Entry> _repository;
         private readonly ISecurity _security;
-        private const string SecurityHeaderName = "X-Hisco";
-        private const string GenericErrorMessage = "Invalid entry.";
 
         public EntriesController(IRepository<Entry> repository, ISecurity security)
         {
@@ -33,14 +31,14 @@
         // POST /api/entries
         public HttpResponseMessage Post(Entry value)
         {
-            if (value == null || !ModelState.IsValid || !Request.Headers.Contains(SecurityHeaderName))
-                return Request.CreateResponse(HttpStatusCode.InternalServerError, GenericErrorMessage);
+            if (value == null || !ModelState.IsValid || !Request.Headers.Contains(HiscoConstants.SecurityHeaderName))
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, HiscoConstants.GenericErrorMessage);
 
-            string headerHash = Request.Headers.GetValues(SecurityHeaderName).First();
+            string headerHash = Request.Headers.GetValues(HiscoConstants.SecurityHeaderName).First();
             string secureHash = _security.GenerateHash(new[] {value.Name, Math.Floor(value.Score).ToString(CultureInfo.InvariantCulture)});
 
             if (headerHash != secureHash)
-                return Request.CreateResponse(HttpStatusCode.InternalServerError, GenericErrorMessage);
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, HiscoConstants.GenericErrorMessage);
 
             _repository.Add(value);
 
