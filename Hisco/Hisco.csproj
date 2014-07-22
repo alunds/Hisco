@@ -138,7 +138,7 @@
     <Compile Include="Security\BasicSecurity.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Database\Scripts\create_db.sql" />
+    <None Include="Database\Scripts\create_db.sql" />
     <Content Include="Global.asax" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
