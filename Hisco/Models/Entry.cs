@@ -10,6 +10,8 @@
         [JsonIgnore]
         [XmlIgnore]
         public long Id { get; set; }
+        [JsonIgnore]
+        [XmlIgnore]
         [Required]
         [Range(1, 65535)]
         public ushort Level { get; set; }
