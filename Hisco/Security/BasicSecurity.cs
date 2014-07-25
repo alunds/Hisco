@@ -12,6 +12,7 @@
         public string GenerateHash(string[] keys)
         {
             var keyBuilder = new StringBuilder();
+
             keys.ToList().ForEach(x => keyBuilder.Append(x));
             keyBuilder.Append(_hashKey);
 

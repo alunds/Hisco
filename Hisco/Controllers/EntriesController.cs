@@ -1,6 +1,5 @@
 ﻿namespace Hisco.Controllers
 {
-    using System;
     using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
@@ -35,7 +34,13 @@
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, HiscoConstants.GenericErrorMessage);
 
             string headerHash = Request.Headers.GetValues(HiscoConstants.SecurityHeaderName).First();
-            string secureHash = _security.GenerateHash(new[] {value.Name, Math.Floor(value.Score).ToString(CultureInfo.InvariantCulture)});
+
+            string secureHash = _security.GenerateHash(new[]
+            {
+                value.Level.ToString(CultureInfo.InvariantCulture),
+                value.Name,
+                value.Score.ToString(CultureInfo.InvariantCulture)
+            });
 
             if (headerHash != secureHash)
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, HiscoConstants.GenericErrorMessage);

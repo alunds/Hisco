@@ -8,7 +8,7 @@
     public class EntryRepository : IRepository<Entry>
     {
         private readonly IDataAccessor<Entry> _dataAccessor;
-        private const string SelectSql = "SELECT name, score FROM entries WHERE level = @level ORDER BY score DESC LIMIT 100;";
+        private const string SelectSql = "SELECT level, name, score FROM entries WHERE level = @level ORDER BY score DESC LIMIT 100;";
         private const string InsertSql = "INSERT INTO entries (level, name, score) VALUES (@level, @name, @score);";
 
         public EntryRepository(IDataAccessor<Entry> dataAccessor)
@@ -26,8 +26,9 @@
                 },
                 r => new Entry
                 {
-                    Name = r.GetString(0),
-                    Score = r.GetDecimal(1)
+                    Level = (ushort)r.GetInt16(0),
+                    Name = r.GetString(1),
+                    Score = (ushort)r.GetInt16(2)
                 });
         }
 

@@ -9,7 +9,7 @@
     {
         [JsonIgnore]
         [XmlIgnore]
-        public long Id { get; set; }
+        public ulong Id { get; set; }
         [Required]
         [Range(1, 65535)]
         public ushort Level { get; set; }
@@ -17,8 +17,8 @@
         [StringLength(50)]
         public string Name { get; set; }
         [Required]
-        [Range(1, 999.999)]
-        public decimal Score { get; set; }
+        [Range(1, 65535)]
+        public ushort Score { get; set; }
         [JsonIgnore]
         [XmlIgnore]
         public DateTime Created { get; set; }

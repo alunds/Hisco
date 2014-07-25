@@ -1,12 +1,10 @@
-﻿CREATE TABLE 'entries'
-(
-	'id' BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
-	'level' SMALLINT UNSIGNED NOT NULL,
-	'name' VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-	'score' DECIMAL(6,3) NOT NULL,
-	'created' TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	PRIMARY KEY ('id'),
-	INDEX ('score'),
-	UNIQUE ('id')
-)
-ENGINE = INNODB CHARACTER SET utf8 COLLATE utf8_general_ci;
+﻿CREATE TABLE IF NOT EXISTS `entries` (
+	`id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+	`level` smallint(5) unsigned NOT NULL,
+	`name` varchar(50) NOT NULL,
+	`score` smallint(5) unsigned NOT NULL,
+	`created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	PRIMARY KEY (`id`),
+	UNIQUE KEY `id` (`id`),
+	KEY `score` (`score`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
